@@ -15,6 +15,7 @@ import audiomanagershell.commands.exceptions.*;
  *
  * @author ciprian
  */
+
 public class Interpreter {
     
     private Path currentPath;
