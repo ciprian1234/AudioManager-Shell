@@ -5,15 +5,16 @@
  */
 package audiomanagershell.commands;
 
-import audiomanagershell.Interpreter;
 import audiomanagershell.commands.exceptions.CommandException;
 import audiomanagershell.commands.exceptions.CommandNotFoundException;
 import audiomanagershell.commands.exceptions.PathNotFoundException;
+import java.io.IOException;
 
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,20 +27,28 @@ public class ChangeDirectoryCommand extends Command {
     
     
     @Override
-        public void execute() throws CommandException{
-            String path = this.arg;
-            File file = new File(path);
-            File file2 = new File(this.pathRef.toString() + '\\' + path );
-                if(file.exists() || file2.exists()){
-                    if(!path.contains(":"))
-                        this.pathRef = Paths.get(this.pathRef.toString(),path);
-                    else
-                        this.pathRef = Paths.get(path);
-                    System.out.printf("Directory changed to %s\n ",this.pathRef.toString());
-                }
-                else{
-                   throw new PathNotFoundException(arg);
-                }
+        public void execute() throws CommandException {
+            
+            Path testPath;
+            Path tempPath;
+            
+            /* Test pentru calea absoluta */
+            if(arg.charAt(0) == '/' || arg.contains(":"))
+                testPath = Paths.get(this.arg);
+            else    
+                testPath = Paths.get(this.pathRef.toString() + "\\" + this.arg);
+            
+            
+            try {
+                tempPath = testPath.toRealPath();
+                if( !Files.isDirectory(testPath))
+                    throw new PathNotFoundException(arg);
+            } 
+            catch (IOException ex) {
+                throw new PathNotFoundException(arg);
+            }
+            
+            this.pathRef = Paths.get(tempPath.toString());
         }
 
     @Override
