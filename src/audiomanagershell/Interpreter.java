@@ -14,7 +14,6 @@ import audiomanagershell.commands.exceptions.*;
 /**
  *
  * @author ciprian
- * asdasd
  */
 public class Interpreter {
     
