@@ -19,7 +19,7 @@ public class Main {
         
         Interpreter shell = new Interpreter();
         
-        //Test
+        
         shell.run();
         
     }
