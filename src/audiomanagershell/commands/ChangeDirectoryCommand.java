@@ -10,6 +10,8 @@ import java.nio.file.Path;
 /**
  *
  * @author ciprian
+ * 
+ * Merged
  */
 public class ChangeDirectoryCommand extends Command {
     
