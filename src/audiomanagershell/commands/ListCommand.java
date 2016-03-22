@@ -7,8 +7,13 @@ package audiomanagershell.commands;
 
 import audiomanagershell.commands.exceptions.CommandException;
 
-import java.io.File;
+import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,19 +26,25 @@ public class ListCommand extends Command{
 
     @Override
     public void execute() throws CommandException {
-        File currentFolder = new File(this.pathRef.toString());
-        File[] listOfFiles = currentFolder.listFiles();
+        Path currentFolder = Paths.get(this.pathRef.toString());
+        List<Path> files = new ArrayList<>();
+         try{
+             DirectoryStream<Path> stream = Files.newDirectoryStream(currentFolder);
+                for(Path file : stream)
+                    files.add(file);
+             stream.close();
+         }
+         catch (IOException e){
+             e.printStackTrace();
+         }
+        for(Path file : files) {
+            if (Files.isDirectory(file))
+                System.out.printf("dir >");
+            if (Files.isRegularFile(file))
+                System.out.printf("file >");
+            System.out.println(file.getFileName().toString());
+        }
 
-            for(int i = 0;i < listOfFiles.length;i++){
-                if( listOfFiles[i].isFile()){
-                    System.out.println("File " + listOfFiles[i].getName());
-                }
-                if(listOfFiles[i].isDirectory()){
-                    System.out.println("Directory " + listOfFiles[i].getName());
-                }
-            }
-            if(listOfFiles.length == 0)
-                System.out.println("The directory is empty!");
     }
 
     @Override
