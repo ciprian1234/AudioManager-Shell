@@ -55,7 +55,8 @@ public class Interpreter {
                         currentPath = cmd.getPath();
                         break;
                     case "list":
-                        System.out.println("Not Implemented!");
+                        Command listCmd = new ListCommand(currentPath);
+                        listCmd.execute();
                         break;
                     case "play":
                         System.out.println("Not Implemented!");
