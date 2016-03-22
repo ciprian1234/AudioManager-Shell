@@ -33,21 +33,26 @@ public class Interpreter {
     loop:while(true)
         {
             String command = "";
+            String[] commandParts;
             System.out.format("%s>", currentPath.toString());
             
             try {
                 if(in.hasNextLine())
                     command = in.nextLine();
-                
-                //De implementat cazul in care comanda este invalida sintactic
-                if(false)
+                commandParts = command.split(" ");
+
+
+                if(commandParts.length > 2)
                     throw new InvalidCommandException();
-                switch(command)
+                switch(commandParts[0])
                 {
                     case "cd":
+                        if(commandParts.length != 2)
+                            throw new NotEnoughArgumentsException(command);
                         Command cmd = new ChangeDirectoryCommand(currentPath);
+                        cmd.init(commandParts[1]);
                         cmd.execute();
-                        System.out.println("Not Implemented!");
+                        currentPath = cmd.getPath();
                         break;
                     case "list":
                         System.out.println("Not Implemented!");
@@ -74,7 +79,7 @@ public class Interpreter {
                 }
                 
             }
-            catch(CommandNotFoundException | InvalidCommandException e) {
+            catch(CommandException e) {
                 System.out.println( e.getMessage() );
             }
         }
