@@ -65,7 +65,9 @@ public class Interpreter {
                         playCmd.execute();
                         break;
                     case "info":
-                        System.out.println("Not Implemented!");
+                        Command infoCmd = new InfoCommand(currentPath);
+                        infoCmd.init(commandParts[1]);
+                        infoCmd.execute();
                         break;
                     case "find":
                         System.out.println("Not Implemented!");

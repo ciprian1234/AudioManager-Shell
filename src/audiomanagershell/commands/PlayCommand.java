@@ -10,7 +10,9 @@ import audiomanagershell.commands.exceptions.CommandException;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,8 +27,8 @@ public class PlayCommand extends Command{
 
     @Override
     public void execute() throws CommandException,IOException {
-        File file = new File(this.pathRef.toString() + '\\' + this.arg );
-        String fileName = file.getName();
+        Path file = Paths.get(this.pathRef.toString() + '\\' + this.arg );
+        String fileName = file.getFileName().toString();
         List<String> acceptedExtensions = Arrays.asList("wav","mp3","flac","mp4");
             //Get the extension of the file
             String extension = "";
@@ -36,11 +38,11 @@ public class PlayCommand extends Command{
                 extension = fileName.substring(i+1);
             }
 
-            if(file.isFile() && file.canRead()){
-                System.out.printf("File %s is there",file.toString());
+            if(Files.isRegularFile(file) && Files.isReadable(file)){
                 if(acceptedExtensions.contains(extension)){
                     Desktop desktop = Desktop.getDesktop();
-                    desktop.open(file);
+                    desktop.open(file.toFile());
+                    System.out.printf("The file %s will open shortly...\n",fileName);
                 }
             }
             else{

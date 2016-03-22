@@ -33,7 +33,7 @@ public class ListCommand extends Command{
                 }
             }
             if(listOfFiles.length == 0)
-                System.out.println("This directory is empty!");
+                System.out.println("The directory is empty!");
     }
 
     @Override

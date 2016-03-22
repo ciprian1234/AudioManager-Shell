@@ -5,10 +5,38 @@
  */
 package audiomanagershell.commands;
 
+import audiomanagershell.commands.exceptions.CommandException;
+import audiomanagershell.commands.exceptions.FileNotFoundException;
+import audiomanagershell.commands.exceptions.NotAFileException;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 /**
  *
  * @author ciprian
  */
-public class FavCommand {
-    
+public class FavCommand extends Command{
+    public FavCommand(Path reference){
+        super(reference);
+    }
+    @Override
+    public void execute() throws CommandException, IOException {
+        Path file = Paths.get(this.pathRef.toString(),this.arg);
+        if(!Files.exists(file))
+            throw new FileNotFoundException(file.getFileName().toString());
+        if(Files.isRegularFile(file))
+
+            //Trebuie luate meta-datele ma ocup maine
+            System.out.println("Fisier normal");
+        else
+            throw new NotAFileException(file.getFileName().toString());
+    }
+
+    @Override
+    public void init(String args) {
+        this.arg = args;
+    }
 }
