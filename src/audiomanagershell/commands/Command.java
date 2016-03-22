@@ -7,6 +7,7 @@ package audiomanagershell.commands;
 
 import audiomanagershell.commands.exceptions.CommandException;
 
+import java.io.IOException;
 import java.nio.file.Path;
 
 /**
@@ -22,7 +23,7 @@ public abstract class Command {
         this.pathRef = reference;
     }
     
-    public abstract void execute() throws CommandException;
+    public abstract void execute() throws CommandException,IOException;
     public abstract void init(String args);
     public Path getPath(){
         return pathRef.toAbsolutePath();

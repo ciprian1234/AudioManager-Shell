@@ -5,6 +5,7 @@
  */
 package audiomanagershell;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -59,7 +60,9 @@ public class Interpreter {
                         listCmd.execute();
                         break;
                     case "play":
-                        System.out.println("Not Implemented!");
+                        Command playCmd = new PlayCommand(currentPath);
+                        playCmd.init(commandParts[1]);
+                        playCmd.execute();
                         break;
                     case "info":
                         System.out.println("Not Implemented!");
@@ -80,7 +83,7 @@ public class Interpreter {
                 }
                 
             }
-            catch(CommandException e) {
+            catch(CommandException | IOException e) {
                 System.out.println( e.getMessage() );
             }
         }
