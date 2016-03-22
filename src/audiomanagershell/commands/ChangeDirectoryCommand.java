@@ -20,8 +20,6 @@ import java.nio.file.Paths;
  * @author ciprian
  */
 public class ChangeDirectoryCommand extends Command {
-    
-    
     public ChangeDirectoryCommand(Path reference) {
         super(reference);
     }
@@ -29,11 +27,15 @@ public class ChangeDirectoryCommand extends Command {
     
     @Override
         public void execute() throws CommandException{
-            File file = new File(this.arg);
-            File file2 = new File(this.pathRef.toString() + this.arg );
+            String path = this.arg;
+            File file = new File(path);
+            File file2 = new File(this.pathRef.toString() + '\\' + path );
                 if(file.exists() || file2.exists()){
-                    this.pathRef = Paths.get(this.arg);
-                    System.out.printf("%s exista\n ",this.arg);
+                    if(!path.contains(":"))
+                        this.pathRef = Paths.get(this.pathRef.toString(),path);
+                    else
+                        this.pathRef = Paths.get(path);
+                    System.out.printf("Directory changed to %s\n ",this.pathRef.toString());
                 }
                 else{
                    throw new PathNotFoundException(arg);
