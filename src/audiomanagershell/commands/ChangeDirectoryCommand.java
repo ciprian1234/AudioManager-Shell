@@ -31,13 +31,11 @@ public class ChangeDirectoryCommand extends Command {
             
             Path testPath;
             Path tempPath;
-            
             /* Test pentru calea absoluta */
             if(arg.charAt(0) == '/' || arg.contains(":"))
                 testPath = Paths.get(this.arg);
             else    
-                testPath = Paths.get(this.pathRef.toString() + "\\" + this.arg);
-            
+                testPath = Paths.get(this.pathRef.toString() + "/" + this.arg);
             
             try {
                 tempPath = testPath.toRealPath();
@@ -55,5 +53,4 @@ public class ChangeDirectoryCommand extends Command {
     public void init(String args){
         this.arg = args;
     }
-    
 }
