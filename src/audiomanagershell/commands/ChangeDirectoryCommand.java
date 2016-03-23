@@ -6,15 +6,12 @@
 package audiomanagershell.commands;
 
 import audiomanagershell.commands.exceptions.CommandException;
-import audiomanagershell.commands.exceptions.CommandNotFoundException;
 import audiomanagershell.commands.exceptions.PathNotFoundException;
 import java.io.IOException;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -24,7 +21,6 @@ public class ChangeDirectoryCommand extends Command {
     public ChangeDirectoryCommand(Path reference) {
         super(reference);
     }
-    
     
     @Override
         public void execute() throws CommandException {

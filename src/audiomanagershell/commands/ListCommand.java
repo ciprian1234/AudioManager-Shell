@@ -36,9 +36,9 @@ public class ListCommand extends Command{
 
              for(Path file : files) {
                  if (Files.isDirectory(file))
-                     System.out.printf("dir >");
+                     System.out.printf("Dir -> ");
                  if (Files.isRegularFile(file))
-                     System.out.printf("file >");
+                     System.out.printf("File -> ");
 
                  System.out.println(file.getFileName().toString());
 

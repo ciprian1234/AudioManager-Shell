@@ -6,7 +6,6 @@
 package audiomanagershell.commands;
 
 import audiomanagershell.commands.exceptions.CommandException;
-
 import java.io.IOException;
 import java.nio.file.Path;
 

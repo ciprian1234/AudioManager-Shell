@@ -8,8 +8,6 @@ package audiomanagershell.commands;
 import audiomanagershell.commands.exceptions.CommandException;
 import audiomanagershell.commands.exceptions.FileNotFoundException;
 import audiomanagershell.commands.exceptions.NotAFileException;
-
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
