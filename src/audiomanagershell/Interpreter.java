@@ -74,7 +74,11 @@ public class Interpreter {
                         infoCmd.execute();
                         break;
                     case "find":
-                        System.out.println("Not Implemented!");
+                        if(commandParts.length != 2)
+                            throw new NotEnoughArgumentsException(command);
+                        Command findCmd = new FindCommand(currentPath);
+                        findCmd.init(commandParts[1]);
+                        findCmd.execute();
                         break;
                     case "fav":
                         System.out.println("Not Implemented!");
