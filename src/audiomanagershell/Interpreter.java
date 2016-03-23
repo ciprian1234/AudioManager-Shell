@@ -60,11 +60,15 @@ public class Interpreter {
                         listCmd.execute();
                         break;
                     case "play":
+                        if(commandParts.length != 2)
+                            throw new NotEnoughArgumentsException(command);
                         Command playCmd = new PlayCommand(currentPath);
                         playCmd.init(commandParts[1]);
                         playCmd.execute();
                         break;
                     case "info":
+                        if(commandParts.length != 2)
+                            throw new NotEnoughArgumentsException(command);
                         Command infoCmd = new InfoCommand(currentPath);
                         infoCmd.init(commandParts[1]);
                         infoCmd.execute();

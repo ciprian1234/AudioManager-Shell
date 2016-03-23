@@ -6,6 +6,7 @@
 package audiomanagershell.commands;
 
 import audiomanagershell.commands.exceptions.CommandException;
+import audiomanagershell.commands.exceptions.NotAudioFileException;
 
 import java.awt.*;
 import java.io.IOException;
@@ -42,6 +43,9 @@ public class PlayCommand extends Command{
                     Desktop desktop = Desktop.getDesktop();
                     desktop.open(file.toFile());
                     System.out.printf("The file %s will open shortly...\n",fileName);
+                }
+                else{
+                    throw new NotAudioFileException(fileName);
                 }
             }
             else{
