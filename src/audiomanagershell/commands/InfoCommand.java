@@ -24,7 +24,7 @@ public class InfoCommand extends Command{
     }
 
     @Override
-    public void execute() throws CommandException, IOException {
+    public void execute() throws CommandException {
         Path file = Paths.get(this.pathRef.toString(),this.arg);
         if(!Files.exists(file))
             throw new FileNotFoundException(file.getFileName().toString());

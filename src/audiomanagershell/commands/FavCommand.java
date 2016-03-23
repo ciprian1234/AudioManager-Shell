@@ -25,11 +25,12 @@ public class FavCommand extends Command{
     @Override
     public void execute() throws CommandException, IOException {
         Path file = Paths.get(this.pathRef.toString(),this.arg);
+
+
+        //Trebuie implementata
         if(!Files.exists(file))
             throw new FileNotFoundException(file.getFileName().toString());
         if(Files.isRegularFile(file))
-
-            //Trebuie luate meta-datele ma ocup maine
             System.out.println("Fisier normal");
         else
             throw new NotAFileException(file.getFileName().toString());

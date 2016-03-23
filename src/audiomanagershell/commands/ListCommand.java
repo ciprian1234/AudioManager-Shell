@@ -33,17 +33,20 @@ public class ListCommand extends Command{
                 for(Path file : stream)
                     files.add(file);
              stream.close();
+
+             for(Path file : files) {
+                 if (Files.isDirectory(file))
+                     System.out.printf("dir >");
+                 if (Files.isRegularFile(file))
+                     System.out.printf("file >");
+
+                 System.out.println(file.getFileName().toString());
+
+             }
          }
          catch (IOException e){
              e.printStackTrace();
          }
-        for(Path file : files) {
-            if (Files.isDirectory(file))
-                System.out.printf("dir >");
-            if (Files.isRegularFile(file))
-                System.out.printf("file >");
-            System.out.println(file.getFileName().toString());
-        }
 
     }
 
