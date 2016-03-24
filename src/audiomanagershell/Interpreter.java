@@ -20,14 +20,14 @@ import audiomanagershell.commands.exceptions.*;
 public class Interpreter {
     
     //Pentru fav command
-    private final Path applicationPath;
+    private final Path appPath;
     private Path currentPath;
     
     public Interpreter()
     {
         currentPath = Paths.get("");
         currentPath = currentPath.toAbsolutePath();
-        applicationPath = Paths.get(currentPath.toString());
+        appPath = Paths.get(currentPath.toString());
     }
     
     public void run()
@@ -47,12 +47,12 @@ public class Interpreter {
 
 
                 if(commandParts.length > 2)
-                    throw new InvalidCommandException();
+                    throw new InvalidNumberOfArgumentsException(command);
                 switch(commandParts[0])
                 {
                     case "cd":
                         if(commandParts.length != 2)
-                            throw new NotEnoughArgumentsException(command);
+                            throw new InvalidNumberOfArgumentsException(command);
                         Command cmd = new ChangeDirectoryCommand(currentPath);
                         cmd.init(commandParts[1]);
                         cmd.execute();
@@ -64,21 +64,21 @@ public class Interpreter {
                         break;
                     case "play":
                         if(commandParts.length != 2)
-                            throw new NotEnoughArgumentsException(command);
+                            throw new InvalidNumberOfArgumentsException(command);
                         Command playCmd = new PlayCommand(currentPath);
                         playCmd.init(commandParts[1]);
                         playCmd.execute();
                         break;
                     case "info":
                         if(commandParts.length != 2)
-                            throw new NotEnoughArgumentsException(command);
+                            throw new InvalidNumberOfArgumentsException(command);
                         Command infoCmd = new InfoCommand(currentPath);
                         infoCmd.init(commandParts[1]);
                         infoCmd.execute();
                         break;
                     case "find":
                         if(commandParts.length != 2)
-                            throw new NotEnoughArgumentsException(command);
+                            throw new InvalidNumberOfArgumentsException(command);
                         Command findCmd = new FindCommand(currentPath);
                         findCmd.init(commandParts[1]);
                         findCmd.execute();

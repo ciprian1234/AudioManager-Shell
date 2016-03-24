@@ -11,7 +11,7 @@ package audiomanagershell.commands.exceptions;
  */
 public class CommandException extends Exception {
     
-    public CommandException() {
+    private CommandException() {
         super("Error: An unknown error has appeared!");
     }
     

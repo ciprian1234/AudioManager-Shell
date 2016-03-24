@@ -36,7 +36,7 @@ public class FavCommand extends Command{
             throw new FileNotFoundException(file.getFileName().toString());
         if(Files.isRegularFile(file))
         {
-            try(PrintWriter output = new PrintWriter())
+            
         }
         else
             throw new NotAFileException(file.getFileName().toString());
