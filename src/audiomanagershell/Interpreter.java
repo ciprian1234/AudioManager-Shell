@@ -20,14 +20,19 @@ import audiomanagershell.commands.exceptions.*;
 public class Interpreter {
     
     //Pentru fav command
-    private final Path appPath;
+    private final Path favFile;
     private Path currentPath;
     
     public Interpreter()
     {
         currentPath = Paths.get("");
         currentPath = currentPath.toAbsolutePath();
-        appPath = Paths.get(currentPath.toString());
+        
+        String OS = System.getProperty("os.name").toLowerCase();
+        if(OS.equals("windows"))
+            favFile = Paths.get(this.currentPath.toString() + "\\" + "favList.txt");
+        else
+            favFile = Paths.get(this.currentPath.toString() + "/" + "favList");
     }
     
     public void run()
@@ -45,9 +50,8 @@ public class Interpreter {
                     command = in.nextLine();
                 commandParts = command.split(" ");
 
-
                 if(commandParts.length > 2)
-                    throw new InvalidNumberOfArgumentsException(command);
+                    throw new InvalidNumberOfArgumentsException(commandParts[0]);
                 switch(commandParts[0])
                 {
                     case "cd":
@@ -84,8 +88,11 @@ public class Interpreter {
                         findCmd.execute();
                         break;
                     case "fav":
-                        
-                        //System.out.println("Not Implemented!");
+                        if(commandParts.length != 2)
+                            throw new InvalidNumberOfArgumentsException(command);
+                        Command favCmd = new FavCommand(favFile, currentPath);
+                        favCmd.init(commandParts[1]);
+                        favCmd.execute();
                         break;
                     case "report":
                         System.out.println("Not Implemented!");

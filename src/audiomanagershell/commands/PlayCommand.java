@@ -17,8 +17,6 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
-import static thredds.featurecollection.FeatureCollectionConfig.PartitionType.file;
-
 /**
  *
  * @author ciprian
