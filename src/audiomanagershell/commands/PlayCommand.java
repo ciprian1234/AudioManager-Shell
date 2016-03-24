@@ -17,6 +17,8 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
+import static thredds.featurecollection.FeatureCollectionConfig.PartitionType.file;
+
 /**
  *
  * @author ciprian
@@ -28,16 +30,16 @@ public class PlayCommand extends Command{
     //random stuff for testing
     @Override
     public void execute() throws CommandException,IOException {
-        Path file = Paths.get(this.pathRef.toString() + '\\' + this.arg );
+        String OS = System.getProperty("os.name").toLowerCase();
+        Path file;
+        if(OS.equals("windows"))
+            file = Paths.get(this.pathRef.toString() + "\\" + this.arg );
+        else
+            file = Paths.get(this.pathRef.toString() + "/" + this.arg);
         String fileName = file.getFileName().toString();
         List<String> acceptedExtensions = Arrays.asList("wav","mp3","flac","mp4");
             //Get the extension of the file
             String extension = FilenameUtils.getExtension(fileName);
-            /*int i = fileName.lastIndexOf('.');
-            int p = Math.max(fileName.lastIndexOf('/'), fileName.lastIndexOf('\\'));
-            if( i > p){
-                extension = fileName.substring(i+1);
-            }*/
             if(Files.isRegularFile(file) && Files.isReadable(file)){
                 if(acceptedExtensions.contains(extension)){
                     Desktop desktop = Desktop.getDesktop();

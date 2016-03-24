@@ -37,7 +37,12 @@ public class InfoCommand extends Command{
 
     @Override
     public void execute() throws CommandException {
-        Path file = Paths.get(this.pathRef.toString(),this.arg);
+        String OS = System.getProperty("os.name").toLowerCase();
+        Path file;
+        if(OS.equals("windows"))
+            file = Paths.get(this.pathRef.toString() + "\\" + this.arg );
+        else
+            file = Paths.get(this.pathRef.toString() + "/" + this.arg);
         String fileName = file.getFileName().toString();
         List<String> acceptedExtensions = Arrays.asList("wav","mp3","flac");
         List<String> infoWanted = Arrays.asList("title","xmpDM:artist","xmpDM:genre","xmpDM:album","xmpDM:releaseDate");
@@ -46,11 +51,6 @@ public class InfoCommand extends Command{
         if(Files.isRegularFile(file)) {
             //Get the extension of the file
             String extension = FilenameUtils.getExtension(fileName);
-                /*int i = fileName.lastIndexOf('.');
-                int p = Math.max(fileName.lastIndexOf('/'), fileName.lastIndexOf('\\'));
-                if (i > p) {
-                    extension = fileName.substring(i + 1);
-                }*/
 
             if(acceptedExtensions.contains(extension)){
                 try{
