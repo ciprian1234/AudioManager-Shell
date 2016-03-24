@@ -9,6 +9,7 @@ import audiomanagershell.commands.exceptions.CommandException;
 import audiomanagershell.commands.exceptions.FileNotFoundException;
 import audiomanagershell.commands.exceptions.NotAFileException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,11 +19,15 @@ import java.nio.file.Paths;
  * @author ciprian
  */
 public class FavCommand extends Command{
-    public FavCommand(Path reference){
+    
+    private final Path appPath;
+    public FavCommand(Path appPath, Path reference){
         super(reference);
+        this.appPath = Paths.get(appPath.toString());
     }
+    
     @Override
-    public void execute() throws CommandException, IOException {
+    public void execute() throws CommandException {
         Path file = Paths.get(this.pathRef.toString(),this.arg);
 
 
@@ -30,7 +35,9 @@ public class FavCommand extends Command{
         if(!Files.exists(file))
             throw new FileNotFoundException(file.getFileName().toString());
         if(Files.isRegularFile(file))
-            System.out.println("Fisier normal");
+        {
+            try(PrintWriter output = new PrintWriter())
+        }
         else
             throw new NotAFileException(file.getFileName().toString());
     }

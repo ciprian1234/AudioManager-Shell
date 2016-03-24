@@ -19,12 +19,15 @@ import audiomanagershell.commands.exceptions.*;
 
 public class Interpreter {
     
+    //Pentru fav command
+    private final Path applicationPath;
     private Path currentPath;
     
     public Interpreter()
     {
         currentPath = Paths.get("");
         currentPath = currentPath.toAbsolutePath();
+        applicationPath = Paths.get(currentPath.toString());
     }
     
     public void run()
@@ -81,7 +84,8 @@ public class Interpreter {
                         findCmd.execute();
                         break;
                     case "fav":
-                        System.out.println("Not Implemented!");
+                        
+                        //System.out.println("Not Implemented!");
                         break;
                     case "report":
                         System.out.println("Not Implemented!");
