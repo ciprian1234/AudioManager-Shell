@@ -64,7 +64,6 @@ public class FindCommand extends Command{
                     List<String> infoWanted = Arrays.asList("title","xmpDM:artist","xmpDM:genre","xmpDM:album","xmpDM:releaseDate");
 
                     //MP3 Parser
-
                     Mp3Parser AudioParser = new Mp3Parser();
                     AudioParser.parse(input,handler,metadata,pcontext);
 

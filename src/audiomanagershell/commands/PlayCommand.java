@@ -7,6 +7,7 @@ package audiomanagershell.commands;
 
 import audiomanagershell.commands.exceptions.CommandException;
 import audiomanagershell.commands.exceptions.NotAudioFileException;
+import org.apache.commons.io.FilenameUtils;
 
 import java.awt.*;
 import java.io.IOException;
@@ -31,13 +32,12 @@ public class PlayCommand extends Command{
         String fileName = file.getFileName().toString();
         List<String> acceptedExtensions = Arrays.asList("wav","mp3","flac","mp4");
             //Get the extension of the file
-            String extension = "";
-            int i = fileName.lastIndexOf('.');
+            String extension = FilenameUtils.getExtension(fileName);
+            /*int i = fileName.lastIndexOf('.');
             int p = Math.max(fileName.lastIndexOf('/'), fileName.lastIndexOf('\\'));
             if( i > p){
                 extension = fileName.substring(i+1);
-            }
-
+            }*/
             if(Files.isRegularFile(file) && Files.isReadable(file)){
                 if(acceptedExtensions.contains(extension)){
                     Desktop desktop = Desktop.getDesktop();

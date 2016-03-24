@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import audiomanagershell.commands.exceptions.NotAudioFileException;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.ParseContext;
@@ -44,12 +45,12 @@ public class InfoCommand extends Command{
             throw new FileNotFoundException(file.getFileName().toString());
         if(Files.isRegularFile(file)) {
             //Get the extension of the file
-                String extension = "";
-                int i = fileName.lastIndexOf('.');
+            String extension = FilenameUtils.getExtension(fileName);
+                /*int i = fileName.lastIndexOf('.');
                 int p = Math.max(fileName.lastIndexOf('/'), fileName.lastIndexOf('\\'));
                 if (i > p) {
                     extension = fileName.substring(i + 1);
-                }
+                }*/
 
             if(acceptedExtensions.contains(extension)){
                 try{
