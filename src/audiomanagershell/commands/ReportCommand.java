@@ -91,8 +91,10 @@ public class ReportCommand extends Command{
                                 AudioParser.parse(input,handler,metadata,pcontext);
 
                                 dataSource.add(metadata.get("title"),metadata.get("xmpDM:artist"),metadata.get("xmpDM:album"),metadata.get("xmpDM:genre"),favFile.toAbsolutePath().toString());
+                                input.close();
                             }
                     }
+            reader.close();
 
         }catch(IOException |SAXException | TikaException e){
                 e.printStackTrace();
