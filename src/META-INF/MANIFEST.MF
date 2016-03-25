@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Class-Path: lib\dynamicreports-core-4.1.0.jar lib\dynamicreports-adhoc
+ -4.1.0.jar lib\jasperreports-6.2.0.jar lib\xml-apis-1.3.04.jar lib\xm
+ l-apis-ext-1.3.04.jar lib\commons-lang3-3.1.jar lib\commons-beanutils
+ -1.9.0.jar lib\commons-codec-1.5.jar lib\commons-collections-3.2.1.ja
+ r lib\commons-digester-2.1.jar lib\commons-lang-2.5.jar lib\commons-l
+ ogging-1.1.1.jar lib\core-2.3.0.jar lib\avalon-framework-impl-4.2.0.j
+ ar lib\barbecue-1.5-beta1.jar lib\barcode4j-2.0.jar lib\batik-anim-1.
+ 7.jar lib\batik-awt-util-1.7.jar lib\batik-bridge-1.7.jar lib\batik-c
+ ss-1.7.jar lib\batik-dom-1.7.jar lib\batik-ext-1.7.jar lib\batik-gvt-
+ 1.7.jar lib\batik-parser-1.7.jar lib\batik-script-1.7.jar lib\batik-s
+ vg-dom-1.7.jar lib\batik-util-1.7.jar lib\batik-xml-1.7.jar lib\bcpro
+ v-jdk14-138.jar lib\ecj-4.3.1.jar lib\hsqldb-1.8.0.10.jar lib\itext-2
+ .1.7.js4.jar lib\jackson-annotations-2.1.4.jar lib\jackson-core-2.1.4
+ .jar lib\jackson-databind-2.1.4.jar lib\jcommon-1.0.23.jar lib\jfreec
+ hart-1.0.19.jar lib\json-20080701.jar lib\jxl-2.6.10.jar lib\log4j-1.
+ 2.14.jar lib\poi-3.10.1.jar lib\serializer-2.7.1.jar lib\spring-beans
+ -2.5.jar lib\spring-core-2.5.jar lib\velocity-1.7.jar lib\xalan-2.7.1
+ .jar lib\tika-app-1.12.jar
+Main-Class: audiomanagershell.Main
+

@@ -31,7 +31,12 @@ public class FavCommand extends Command{
     private final Path favFile;
     public FavCommand(Path appPath, Path reference){
         super(reference);
-        this.favFile = Paths.get(appPath.toString());
+        String OS = System.getProperty("os.name").toLowerCase();
+        if(OS.equals("windows"))
+            favFile = Paths.get(appPath.toString() + "\\" + "favList.txt");
+        else
+            favFile = Paths.get(appPath.toString() + "/" + "favList");
+
     }
     
     @Override
